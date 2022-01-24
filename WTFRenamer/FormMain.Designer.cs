@@ -64,6 +64,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button_start = new System.Windows.Forms.Button();
             this.button_undo = new System.Windows.Forms.Button();
+            this.button_sort = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -79,6 +80,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.button_sort);
             this.groupBox1.Controls.Add(this.button_clear);
             this.groupBox1.Controls.Add(this.button_remove);
             this.groupBox1.Controls.Add(this.button_bottom);
@@ -96,7 +98,7 @@
             // button_clear
             // 
             this.button_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_clear.Location = new System.Drawing.Point(91, 395);
+            this.button_clear.Location = new System.Drawing.Point(172, 395);
             this.button_clear.Name = "button_clear";
             this.button_clear.Size = new System.Drawing.Size(75, 23);
             this.button_clear.TabIndex = 3;
@@ -107,7 +109,7 @@
             // button_remove
             // 
             this.button_remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_remove.Location = new System.Drawing.Point(10, 395);
+            this.button_remove.Location = new System.Drawing.Point(91, 395);
             this.button_remove.Name = "button_remove";
             this.button_remove.Size = new System.Drawing.Size(75, 23);
             this.button_remove.TabIndex = 3;
@@ -180,6 +182,7 @@
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
             // 
             // columnHeader1
             // 
@@ -496,6 +499,17 @@
             this.button_undo.UseVisualStyleBackColor = true;
             this.button_undo.Click += new System.EventHandler(this.button_undo_Click);
             // 
+            // button_sort
+            // 
+            this.button_sort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_sort.Location = new System.Drawing.Point(10, 395);
+            this.button_sort.Name = "button_sort";
+            this.button_sort.Size = new System.Drawing.Size(75, 23);
+            this.button_sort.TabIndex = 3;
+            this.button_sort.Text = "Sort";
+            this.button_sort.UseVisualStyleBackColor = true;
+            this.button_sort.Click += new System.EventHandler(this.button_sort_Click);
+            // 
             // FormMain
             // 
             this.AllowDrop = true;
@@ -564,5 +578,6 @@
         private Button button_menu_register;
         private Label label9;
         private Button button_menu_unregister;
+        private Button button_sort;
     }
 }

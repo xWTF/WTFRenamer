@@ -9,7 +9,9 @@ namespace WTFRenamer
 {
     public partial class FormMain : Form
     {
-        readonly Regex numberingReplace = new(@"([^\\]#|^#)", RegexOptions.Compiled);
+        static readonly Regex NumberingReplace = new(@"([^\\]#|^#)", RegexOptions.Compiled);
+
+        ItemComparer Sorter = new();
 
         public FormMain(string[] argv)
         {
@@ -60,7 +62,7 @@ namespace WTFRenamer
                     name = regex.Replace(name, textBox2.Text);
 
                     // Numbering
-                    name = numberingReplace.Replace(name, e => e.Value[..^1] + number.ToString().PadLeft((int)numericUpDown_length.Value, '0'));
+                    name = NumberingReplace.Replace(name, e => e.Value[..^1] + number.ToString().PadLeft((int)numericUpDown_length.Value, '0'));
                     number += numericUpDown_incr.Value;
 
                     // Letter Case
@@ -168,6 +170,15 @@ namespace WTFRenamer
             listView1.EndUpdate();
         }
 
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column == 0)
+            {
+                Sorter.Descending = !Sorter.Descending;
+                button_sort.PerformClick();
+            }
+        }
+
         private void button_up_Click(object sender, EventArgs e)
         {
             listView1.BeginUpdate();
@@ -244,6 +255,13 @@ namespace WTFRenamer
         private void button_clear_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void button_sort_Click(object sender, EventArgs e)
+        {
+            listView1.ListViewItemSorter = Sorter;
+            listView1.Sort();
+            listView1.ListViewItemSorter = null;
         }
 
         private void button_start_Click(object sender, EventArgs e)
