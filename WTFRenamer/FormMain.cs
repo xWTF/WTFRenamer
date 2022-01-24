@@ -274,7 +274,11 @@ namespace WTFRenamer
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/xWTF/WTFRenamer");
+            Process.Start(new ProcessStartInfo("https://github.com/xWTF/WTFRenamer")
+            {
+                UseShellExecute = true,
+                Verb = "open"
+            });
         }
 
         private const string ShellKey = @"*\shell\WTF Renamer";

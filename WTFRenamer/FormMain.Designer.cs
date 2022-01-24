@@ -59,11 +59,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
+            this.button_menu_unregister = new System.Windows.Forms.Button();
             this.button_menu_register = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button_start = new System.Windows.Forms.Button();
             this.button_undo = new System.Windows.Forms.Button();
-            this.button_menu_unregister = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -433,12 +433,23 @@
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(195, 346);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(132, 17);
             this.label9.TabIndex = 7;
             this.label9.Text = "Copyright 2022 xWTF";
+            // 
+            // button_menu_unregister
+            // 
+            this.button_menu_unregister.Location = new System.Drawing.Point(6, 35);
+            this.button_menu_unregister.Name = "button_menu_unregister";
+            this.button_menu_unregister.Size = new System.Drawing.Size(180, 23);
+            this.button_menu_unregister.TabIndex = 5;
+            this.button_menu_unregister.Text = "Unregister Context Menu";
+            this.button_menu_unregister.UseVisualStyleBackColor = true;
+            this.button_menu_unregister.Click += new System.EventHandler(this.button_menu_unregister_Click);
             // 
             // button_menu_register
             // 
@@ -452,6 +463,7 @@
             // 
             // linkLabel1
             // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Location = new System.Drawing.Point(69, 369);
             this.linkLabel1.Name = "linkLabel1";
@@ -483,16 +495,6 @@
             this.button_undo.Text = "Undo";
             this.button_undo.UseVisualStyleBackColor = true;
             this.button_undo.Click += new System.EventHandler(this.button_undo_Click);
-            // 
-            // button_menu_unregister
-            // 
-            this.button_menu_unregister.Location = new System.Drawing.Point(6, 35);
-            this.button_menu_unregister.Name = "button_menu_unregister";
-            this.button_menu_unregister.Size = new System.Drawing.Size(180, 23);
-            this.button_menu_unregister.TabIndex = 5;
-            this.button_menu_unregister.Text = "Unregister Context Menu";
-            this.button_menu_unregister.UseVisualStyleBackColor = true;
-            this.button_menu_unregister.Click += new System.EventHandler(this.button_menu_unregister_Click);
             // 
             // FormMain
             // 
