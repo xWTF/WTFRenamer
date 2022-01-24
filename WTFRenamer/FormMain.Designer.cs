@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_sort = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
             this.button_remove = new System.Windows.Forms.Button();
             this.button_bottom = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button_start = new System.Windows.Forms.Button();
             this.button_undo = new System.Windows.Forms.Button();
-            this.button_sort = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -94,6 +94,17 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "File List";
+            // 
+            // button_sort
+            // 
+            this.button_sort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_sort.Location = new System.Drawing.Point(10, 395);
+            this.button_sort.Name = "button_sort";
+            this.button_sort.Size = new System.Drawing.Size(75, 23);
+            this.button_sort.TabIndex = 3;
+            this.button_sort.Text = "Sort";
+            this.button_sort.UseVisualStyleBackColor = true;
+            this.button_sort.Click += new System.EventHandler(this.button_sort_Click);
             // 
             // button_clear
             // 
@@ -417,7 +428,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(236, 23);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "^.*$";
             this.textBox1.TextChanged += new System.EventHandler(this.UpdatePreview);
             // 
             // tabPage2
@@ -498,17 +508,6 @@
             this.button_undo.Text = "Undo";
             this.button_undo.UseVisualStyleBackColor = true;
             this.button_undo.Click += new System.EventHandler(this.button_undo_Click);
-            // 
-            // button_sort
-            // 
-            this.button_sort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_sort.Location = new System.Drawing.Point(10, 395);
-            this.button_sort.Name = "button_sort";
-            this.button_sort.Size = new System.Drawing.Size(75, 23);
-            this.button_sort.TabIndex = 3;
-            this.button_sort.Text = "Sort";
-            this.button_sort.UseVisualStyleBackColor = true;
-            this.button_sort.Click += new System.EventHandler(this.button_sort_Click);
             // 
             // FormMain
             // 

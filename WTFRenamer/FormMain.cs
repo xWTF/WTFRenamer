@@ -33,7 +33,15 @@ namespace WTFRenamer
             button_undo.Enabled = false;
             if (tabControl1.SelectedIndex == 0)
             {
-                var regex = new Regex(textBox1.Text == "" ? "^.*$" : textBox1.Text, RegexOptions.Compiled);
+                Regex? regex;
+                try
+                {
+                    regex = new Regex(textBox1.Text == "" ? "^.*$" : textBox1.Text, RegexOptions.Compiled);
+                }
+                catch
+                {
+                    regex = null;
+                }
                 var number = numericUpDown_start.Value;
 
                 listView1.BeginUpdate();
@@ -44,44 +52,51 @@ namespace WTFRenamer
                         item.SubItems[0].Text = Path.GetFileName((string)item.Tag);
                         item.SubItems[2].Text = "";
                     }
-                    var name = item.SubItems[0].Text;
-
-                    // Remove Extension
-                    string? ext = null;
-                    if (!checkBox_ext.Checked)
+                    try
                     {
-                        var index = name.LastIndexOf('.');
-                        if (index != -1)
+                        var name = item.SubItems[0].Text;
+
+                        // Remove Extension
+                        string? ext = null;
+                        if (!checkBox_ext.Checked)
                         {
-                            ext = name[index..];
-                            name = name[..index];
+                            var index = name.LastIndexOf('.');
+                            if (index != -1)
+                            {
+                                ext = name[index..];
+                                name = name[..index];
+                            }
                         }
+
+                        // Regex Replace
+                        name = regex!.Replace(name, textBox2.Text);
+
+                        // Numbering
+                        name = NumberingReplace.Replace(name, e => e.Value[..^1] + number.ToString().PadLeft((int)numericUpDown_length.Value, '0'));
+                        number += numericUpDown_incr.Value;
+
+                        // Letter Case
+                        switch (comboBox1.SelectedIndex)
+                        {
+                        case 0:
+                            break;
+                        case 1:
+                            name = name.ToUpper();
+                            break;
+                        case 2:
+                            name = name.ToLower();
+                            break;
+                        case 3:
+                            name = new string(name.Select(c => char.IsLetter(c) ? (char.IsUpper(c) ? char.ToLower(c) : char.ToUpper(c)) : c).ToArray());
+                            break;
+                        }
+
+                        item.SubItems[1].Text = ext == null ? name : name + ext;
                     }
-
-                    // Regex Replace
-                    name = regex.Replace(name, textBox2.Text);
-
-                    // Numbering
-                    name = NumberingReplace.Replace(name, e => e.Value[..^1] + number.ToString().PadLeft((int)numericUpDown_length.Value, '0'));
-                    number += numericUpDown_incr.Value;
-
-                    // Letter Case
-                    switch (comboBox1.SelectedIndex)
+                    catch
                     {
-                    case 0:
-                        break;
-                    case 1:
-                        name = name.ToUpper();
-                        break;
-                    case 2:
-                        name = name.ToLower();
-                        break;
-                    case 3:
-                        name = new string(name.Select(c => char.IsLetter(c) ? (char.IsUpper(c) ? char.ToLower(c) : char.ToUpper(c)) : c).ToArray());
-                        break;
+                        item.SubItems[1].Text = "";
                     }
-
-                    item.SubItems[1].Text = ext == null ? name : name + ext;
                     item.SubItems[2].Text = "";
                 }
                 listView1.EndUpdate();
@@ -113,7 +128,13 @@ namespace WTFRenamer
                 }
                 try
                 {
-                    string src = (string)item.Tag, dst = Path.Combine(Path.GetDirectoryName(src)!, undo ? item.SubItems[0].Text : item.SubItems[1].Text), dst_final = dst;
+                    string src = (string)item.Tag, dstFile = undo ? item.SubItems[0].Text : item.SubItems[1].Text;
+
+                    if (dstFile == "")
+                    {
+                        return;
+                    }
+                    string dst = Path.Combine(Path.GetDirectoryName(src)!, dstFile), dst_final = dst;
 
                     // Conflict handling
                     int i = 1;
@@ -262,6 +283,7 @@ namespace WTFRenamer
             listView1.ListViewItemSorter = Sorter;
             listView1.Sort();
             listView1.ListViewItemSorter = null;
+            UpdatePreview();
         }
 
         private void button_start_Click(object sender, EventArgs e)
