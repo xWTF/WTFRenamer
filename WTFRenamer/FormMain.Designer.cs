@@ -65,6 +65,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button_start = new System.Windows.Forms.Button();
             this.button_undo = new System.Windows.Forms.Button();
+            this.checkBox_autosort = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -80,6 +81,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.checkBox_autosort);
             this.groupBox1.Controls.Add(this.button_sort);
             this.groupBox1.Controls.Add(this.button_clear);
             this.groupBox1.Controls.Add(this.button_remove);
@@ -509,6 +511,16 @@
             this.button_undo.UseVisualStyleBackColor = true;
             this.button_undo.Click += new System.EventHandler(this.button_undo_Click);
             // 
+            // checkBox_autosort
+            // 
+            this.checkBox_autosort.AutoSize = true;
+            this.checkBox_autosort.Location = new System.Drawing.Point(253, 397);
+            this.checkBox_autosort.Name = "checkBox_autosort";
+            this.checkBox_autosort.Size = new System.Drawing.Size(118, 21);
+            this.checkBox_autosort.TabIndex = 4;
+            this.checkBox_autosort.Text = "Sort on new file";
+            this.checkBox_autosort.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AllowDrop = true;
@@ -525,6 +537,7 @@
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FormMain_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FormMain_DragEnter);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -578,5 +591,6 @@
         private Label label9;
         private Button button_menu_unregister;
         private Button button_sort;
+        private CheckBox checkBox_autosort;
     }
 }

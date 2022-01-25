@@ -18,6 +18,8 @@ namespace WTFRenamer
             InitializeComponent();
             comboBox1.SelectedIndex = 0;
 
+            // TODO: Load state
+
             foreach (string f in argv)
             {
                 try
@@ -25,6 +27,14 @@ namespace WTFRenamer
                     AddFile(Path.GetFullPath(f));
                 }
                 catch { }
+            }
+            if (checkBox_autosort.Checked)
+            {
+                button_sort.PerformClick();
+            }
+            else
+            {
+                UpdatePreview();
             }
         }
 
@@ -158,7 +168,7 @@ namespace WTFRenamer
 
         public void AddFile(string file)
         {
-            if (!listView1.Items.OfType<ListViewItem>().Any(i => i.Text == file))
+            if (!listView1.Items.OfType<ListViewItem>().Any(i => i.Tag as string == file))
             {
                 listView1.Items.Add(new ListViewItem(new string[] { Path.GetFileName(file), "", "" })
                 {
@@ -187,7 +197,14 @@ namespace WTFRenamer
             {
                 AddFile(f);
             }
-            UpdatePreview();
+            if (checkBox_autosort.Checked)
+            {
+                button_sort.PerformClick();
+            }
+            else
+            {
+                UpdatePreview();
+            }
             listView1.EndUpdate();
         }
 
