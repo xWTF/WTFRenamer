@@ -148,12 +148,19 @@ namespace WTFRenamer
 
                     // Conflict handling
                     int i = 1;
-                    while (File.Exists(dst_final))
+                    while (File.Exists(dst_final) || Directory.Exists(dst_final))
                     {
                         dst_final = Path.Combine(Path.GetDirectoryName(dst)!, Path.GetFileNameWithoutExtension(dst) + " (" + (i++) + ")" + Path.GetExtension(dst));
                     }
 
-                    File.Move(src, dst_final);
+                    if (File.GetAttributes(src).HasFlag(FileAttributes.Directory))
+                    {
+                        Directory.Move(src, dst_final);
+                    }
+                    else
+                    {
+                        File.Move(src, dst_final);
+                    }
 
                     item.Tag = dst_final;
                     item.SubItems[2].Text = i == 1 ? "¡Ì" : "¡Ì CON: " + (i - 1);
