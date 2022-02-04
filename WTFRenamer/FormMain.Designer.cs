@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox_autosort = new System.Windows.Forms.CheckBox();
             this.button_sort = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
             this.button_remove = new System.Windows.Forms.Button();
@@ -65,7 +66,6 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button_start = new System.Windows.Forms.Button();
             this.button_undo = new System.Windows.Forms.Button();
-            this.checkBox_autosort = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -93,9 +93,19 @@
             this.groupBox1.Location = new System.Drawing.Point(359, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(507, 426);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "File List";
+            // 
+            // checkBox_autosort
+            // 
+            this.checkBox_autosort.AutoSize = true;
+            this.checkBox_autosort.Location = new System.Drawing.Point(253, 397);
+            this.checkBox_autosort.Name = "checkBox_autosort";
+            this.checkBox_autosort.Size = new System.Drawing.Size(118, 21);
+            this.checkBox_autosort.TabIndex = 5;
+            this.checkBox_autosort.Text = "Sort on new file";
+            this.checkBox_autosort.UseVisualStyleBackColor = true;
             // 
             // button_sort
             // 
@@ -103,7 +113,7 @@
             this.button_sort.Location = new System.Drawing.Point(10, 395);
             this.button_sort.Name = "button_sort";
             this.button_sort.Size = new System.Drawing.Size(75, 23);
-            this.button_sort.TabIndex = 3;
+            this.button_sort.TabIndex = 2;
             this.button_sort.Text = "Sort";
             this.button_sort.UseVisualStyleBackColor = true;
             this.button_sort.Click += new System.EventHandler(this.button_sort_Click);
@@ -114,7 +124,7 @@
             this.button_clear.Location = new System.Drawing.Point(172, 395);
             this.button_clear.Name = "button_clear";
             this.button_clear.Size = new System.Drawing.Size(75, 23);
-            this.button_clear.TabIndex = 3;
+            this.button_clear.TabIndex = 4;
             this.button_clear.Text = "Clear";
             this.button_clear.UseVisualStyleBackColor = true;
             this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
@@ -136,7 +146,8 @@
             this.button_bottom.Location = new System.Drawing.Point(474, 226);
             this.button_bottom.Name = "button_bottom";
             this.button_bottom.Size = new System.Drawing.Size(26, 38);
-            this.button_bottom.TabIndex = 2;
+            this.button_bottom.TabIndex = 0;
+            this.button_bottom.TabStop = false;
             this.button_bottom.Text = "▼\r\n▼";
             this.button_bottom.UseCompatibleTextRendering = true;
             this.button_bottom.UseVisualStyleBackColor = true;
@@ -148,7 +159,8 @@
             this.button_down.Location = new System.Drawing.Point(474, 197);
             this.button_down.Name = "button_down";
             this.button_down.Size = new System.Drawing.Size(26, 23);
-            this.button_down.TabIndex = 2;
+            this.button_down.TabIndex = 0;
+            this.button_down.TabStop = false;
             this.button_down.Text = "▼";
             this.button_down.UseCompatibleTextRendering = true;
             this.button_down.UseVisualStyleBackColor = true;
@@ -160,7 +172,8 @@
             this.button_top.Location = new System.Drawing.Point(474, 124);
             this.button_top.Name = "button_top";
             this.button_top.Size = new System.Drawing.Size(26, 38);
-            this.button_top.TabIndex = 1;
+            this.button_top.TabIndex = 0;
+            this.button_top.TabStop = false;
             this.button_top.Text = "▲\r\n▲";
             this.button_top.UseCompatibleTextRendering = true;
             this.button_top.UseVisualStyleBackColor = true;
@@ -172,7 +185,8 @@
             this.button_up.Location = new System.Drawing.Point(474, 168);
             this.button_up.Name = "button_up";
             this.button_up.Size = new System.Drawing.Size(26, 23);
-            this.button_up.TabIndex = 1;
+            this.button_up.TabIndex = 0;
+            this.button_up.TabStop = false;
             this.button_up.Text = "▲";
             this.button_up.UseCompatibleTextRendering = true;
             this.button_up.UseVisualStyleBackColor = true;
@@ -248,7 +262,7 @@
             this.checkBox_ext.Location = new System.Drawing.Point(248, 25);
             this.checkBox_ext.Name = "checkBox_ext";
             this.checkBox_ext.Size = new System.Drawing.Size(82, 21);
-            this.checkBox_ext.TabIndex = 10;
+            this.checkBox_ext.TabIndex = 7;
             this.checkBox_ext.Text = "Extension";
             this.checkBox_ext.UseVisualStyleBackColor = true;
             this.checkBox_ext.CheckedChanged += new System.EventHandler(this.UpdatePreview);
@@ -267,7 +281,7 @@
             this.textBox2.Location = new System.Drawing.Point(6, 69);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(321, 23);
-            this.textBox2.TabIndex = 8;
+            this.textBox2.TabIndex = 2;
             this.textBox2.Text = "$0";
             this.textBox2.TextChanged += new System.EventHandler(this.UpdatePreview);
             // 
@@ -283,7 +297,7 @@
             this.comboBox1.Location = new System.Drawing.Point(90, 218);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(237, 25);
-            this.comboBox1.TabIndex = 7;
+            this.comboBox1.TabIndex = 6;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.UpdatePreview);
             // 
             // label7
@@ -330,7 +344,7 @@
             0});
             this.numericUpDown_start.Name = "numericUpDown_start";
             this.numericUpDown_start.Size = new System.Drawing.Size(98, 23);
-            this.numericUpDown_start.TabIndex = 0;
+            this.numericUpDown_start.TabIndex = 3;
             this.numericUpDown_start.Value = new decimal(new int[] {
             1,
             0,
@@ -371,7 +385,7 @@
             0});
             this.numericUpDown_incr.Name = "numericUpDown_incr";
             this.numericUpDown_incr.Size = new System.Drawing.Size(98, 23);
-            this.numericUpDown_incr.TabIndex = 0;
+            this.numericUpDown_incr.TabIndex = 4;
             this.numericUpDown_incr.Value = new decimal(new int[] {
             1,
             0,
@@ -398,7 +412,7 @@
             0});
             this.numericUpDown_length.Name = "numericUpDown_length";
             this.numericUpDown_length.Size = new System.Drawing.Size(98, 23);
-            this.numericUpDown_length.TabIndex = 0;
+            this.numericUpDown_length.TabIndex = 5;
             this.numericUpDown_length.Value = new decimal(new int[] {
             1,
             0,
@@ -494,7 +508,7 @@
             this.button_start.Location = new System.Drawing.Point(726, 444);
             this.button_start.Name = "button_start";
             this.button_start.Size = new System.Drawing.Size(140, 23);
-            this.button_start.TabIndex = 2;
+            this.button_start.TabIndex = 3;
             this.button_start.Text = "Start";
             this.button_start.UseVisualStyleBackColor = true;
             this.button_start.Click += new System.EventHandler(this.button_start_Click);
@@ -506,20 +520,10 @@
             this.button_undo.Location = new System.Drawing.Point(580, 444);
             this.button_undo.Name = "button_undo";
             this.button_undo.Size = new System.Drawing.Size(140, 23);
-            this.button_undo.TabIndex = 3;
+            this.button_undo.TabIndex = 4;
             this.button_undo.Text = "Undo";
             this.button_undo.UseVisualStyleBackColor = true;
             this.button_undo.Click += new System.EventHandler(this.button_undo_Click);
-            // 
-            // checkBox_autosort
-            // 
-            this.checkBox_autosort.AutoSize = true;
-            this.checkBox_autosort.Location = new System.Drawing.Point(253, 397);
-            this.checkBox_autosort.Name = "checkBox_autosort";
-            this.checkBox_autosort.Size = new System.Drawing.Size(118, 21);
-            this.checkBox_autosort.TabIndex = 4;
-            this.checkBox_autosort.Text = "Sort on new file";
-            this.checkBox_autosort.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
