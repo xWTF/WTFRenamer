@@ -136,6 +136,11 @@ namespace WTFRenamer
                 {
                     continue;
                 }
+                if (item.SubItems[0].Text == item.SubItems[1].Text)
+                {
+                    item.SubItems[2].Text = "-";
+                    continue;
+                }
                 try
                 {
                     string src = (string)item.Tag, dstFile = undo ? item.SubItems[0].Text : item.SubItems[1].Text;
