@@ -41,9 +41,19 @@ namespace WTFRenamer
         public void UpdatePreview(object? sender = null, EventArgs? e = null)
         {
             button_undo.Enabled = false;
-            if (tabControl1.SelectedIndex == 0)
+            if (tabControl1.SelectedIndex == tabControl1.TabCount - 1)
             {
-                Regex? regex;
+                return;
+            }
+
+            // Prepare
+            int index = 0;
+            decimal number = 0;
+            Regex? regex = null;
+            string[]? texts = null;
+            switch (tabControl1.SelectedIndex)
+            {
+            case 0:
                 try
                 {
                     regex = new Regex(textBox1.Text == "" ? "^.*$" : textBox1.Text, RegexOptions.Compiled);
@@ -52,32 +62,45 @@ namespace WTFRenamer
                 {
                     regex = null;
                 }
-                var number = numericUpDown_start.Value;
-
-                listView1.BeginUpdate();
-                foreach (ListViewItem item in listView1.Items)
+                number = numericUpDown_start.Value;
+                break;
+            case 1:
+                texts = textBox_list.Lines.Where(l => l != string.Empty).ToArray();
+                if (texts.Length == 0)
                 {
-                    if (item.SubItems[2].Text != "")
-                    {
-                        item.SubItems[0].Text = Path.GetFileName((string)item.Tag);
-                        item.SubItems[2].Text = "";
-                    }
-                    try
-                    {
-                        var name = item.SubItems[0].Text;
+                    texts = new string[] { "" };
+                }
+                break;
+            }
 
-                        // Remove Extension
-                        string? ext = null;
-                        if (!checkBox_ext.Checked)
+            // Calculate
+            listView1.BeginUpdate();
+            foreach (ListViewItem item in listView1.Items)
+            {
+                if (item.SubItems[2].Text != "")
+                {
+                    item.SubItems[0].Text = Path.GetFileName((string)item.Tag);
+                    item.SubItems[2].Text = "";
+                }
+                try
+                {
+                    var name = item.SubItems[0].Text;
+
+                    // Remove Extension
+                    string? ext = null;
+                    if (!checkBox_ext.Checked)
+                    {
+                        var i = name.LastIndexOf('.');
+                        if (i != -1)
                         {
-                            var index = name.LastIndexOf('.');
-                            if (index != -1)
-                            {
-                                ext = name[index..];
-                                name = name[..index];
-                            }
+                            ext = name[i..];
+                            name = name[..i];
                         }
+                    }
 
+                    switch (tabControl1.SelectedIndex)
+                    {
+                    case 0:
                         // Regex Replace
                         name = regex!.Replace(name, textBox2.Text);
 
@@ -100,45 +123,25 @@ namespace WTFRenamer
                             name = new string(name.Select(c => char.IsLetter(c) ? (char.IsUpper(c) ? char.ToLower(c) : char.ToUpper(c)) : c).ToArray());
                             break;
                         }
+                        break;
+                    case 1:
+                        name = texts![index++];
+                        if (index >= texts.Length)
+                        {
+                            index = 0;
+                        }
+                        break;
+                    }
 
-                        item.SubItems[1].Text = ext == null ? name : name + ext;
-                    }
-                    catch
-                    {
-                        item.SubItems[1].Text = "";
-                    }
-                    item.SubItems[2].Text = "";
+                    item.SubItems[1].Text = ext == null ? name : name + ext;
                 }
-                listView1.EndUpdate();
-            }
-            else if (tabControl1.SelectedIndex == 1)
-            {
-                string[] texts = textBox_list.Lines.Where(l => l != string.Empty).ToArray();
-                if (texts.Length == 0)
+                catch
                 {
-                    texts = new string[] { "" };
+                    item.SubItems[1].Text = "";
                 }
-
-                int index = 0;
-                listView1.BeginUpdate();
-                foreach (ListViewItem item in listView1.Items)
-                {
-                    if (item.SubItems[2].Text != "")
-                    {
-                        item.SubItems[0].Text = Path.GetFileName((string)item.Tag);
-                        item.SubItems[2].Text = "";
-                    }
-
-                    item.SubItems[1].Text = texts[index++];
-                    if (index >= texts.Length)
-                    {
-                        index = 0;
-                    }
-
-                    item.SubItems[2].Text = "";
-                }
-                listView1.EndUpdate();
+                item.SubItems[2].Text = "";
             }
+            listView1.EndUpdate();
         }
 
         public void SwapListItem(int prev, int next)
@@ -357,17 +360,13 @@ namespace WTFRenamer
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (tabControl1.SelectedIndex)
+            if (tabControl1.SelectedIndex == tabControl1.TabCount - 1)
             {
-            case 0:
-            case 1:
-                UpdatePreview();
-                button_start.Enabled = true;
-                break;
-            default:
                 button_start.Enabled = false;
-                break;
+                return;
             }
+            UpdatePreview();
+            button_start.Enabled = true;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

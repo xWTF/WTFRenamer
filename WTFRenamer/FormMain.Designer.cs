@@ -84,6 +84,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.checkBox_ext);
             this.groupBox1.Controls.Add(this.checkBox_autosort);
             this.groupBox1.Controls.Add(this.button_sort);
             this.groupBox1.Controls.Add(this.button_clear);
@@ -245,7 +246,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.checkBox_ext);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.textBox2);
             this.tabPage1.Controls.Add(this.comboBox1);
@@ -263,8 +263,9 @@
             // 
             // checkBox_ext
             // 
+            this.checkBox_ext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox_ext.AutoSize = true;
-            this.checkBox_ext.Location = new System.Drawing.Point(248, 25);
+            this.checkBox_ext.Location = new System.Drawing.Point(377, 397);
             this.checkBox_ext.Name = "checkBox_ext";
             this.checkBox_ext.Size = new System.Drawing.Size(82, 21);
             this.checkBox_ext.TabIndex = 7;
@@ -447,7 +448,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(6, 23);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(236, 23);
+            this.textBox1.Size = new System.Drawing.Size(321, 23);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.UpdatePreview);
             // 
