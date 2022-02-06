@@ -111,6 +111,34 @@ namespace WTFRenamer
                 }
                 listView1.EndUpdate();
             }
+            else if (tabControl1.SelectedIndex == 1)
+            {
+                string[] texts = textBox_list.Lines.Where(l => l != string.Empty).ToArray();
+                if (texts.Length == 0)
+                {
+                    texts = new string[] { "" };
+                }
+
+                int index = 0;
+                listView1.BeginUpdate();
+                foreach (ListViewItem item in listView1.Items)
+                {
+                    if (item.SubItems[2].Text != "")
+                    {
+                        item.SubItems[0].Text = Path.GetFileName((string)item.Tag);
+                        item.SubItems[2].Text = "";
+                    }
+
+                    item.SubItems[1].Text = texts[index++];
+                    if (index >= texts.Length)
+                    {
+                        index = 0;
+                    }
+
+                    item.SubItems[2].Text = "";
+                }
+                listView1.EndUpdate();
+            }
         }
 
         public void SwapListItem(int prev, int next)
@@ -136,7 +164,7 @@ namespace WTFRenamer
                 {
                     continue;
                 }
-                if (item.SubItems[0].Text == item.SubItems[1].Text)
+                if (item.SubItems[0].Text == item.SubItems[1].Text || item.SubItems[1].Text == "")
                 {
                     item.SubItems[2].Text = "-";
                     continue;
@@ -327,11 +355,12 @@ namespace WTFRenamer
             DoRename(true);
         }
 
-        private void tabControl1_TabIndexChanged(object sender, EventArgs e)
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (tabControl1.SelectedIndex)
             {
             case 0:
+            case 1:
                 UpdatePreview();
                 button_start.Enabled = true;
                 break;

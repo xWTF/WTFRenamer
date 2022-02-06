@@ -59,6 +59,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.textBox_list = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
             this.button_menu_unregister = new System.Windows.Forms.Button();
@@ -73,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_start)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_incr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_length)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,6 +102,7 @@
             // 
             // checkBox_autosort
             // 
+            this.checkBox_autosort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox_autosort.AutoSize = true;
             this.checkBox_autosort.Location = new System.Drawing.Point(253, 397);
             this.checkBox_autosort.Name = "checkBox_autosort";
@@ -230,13 +234,14 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(341, 426);
             this.tabControl1.TabIndex = 1;
-            this.tabControl1.TabIndexChanged += new System.EventHandler(this.tabControl1_TabIndexChanged);
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -446,6 +451,29 @@
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.UpdatePreview);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.textBox_list);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(333, 396);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Text";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // textBox_list
+            // 
+            this.textBox_list.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_list.Location = new System.Drawing.Point(6, 6);
+            this.textBox_list.Multiline = true;
+            this.textBox_list.Name = "textBox_list";
+            this.textBox_list.Size = new System.Drawing.Size(321, 384);
+            this.textBox_list.TabIndex = 0;
+            this.textBox_list.TextChanged += new System.EventHandler(this.UpdatePreview);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label9);
@@ -550,6 +578,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_start)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_incr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_length)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
@@ -596,5 +626,7 @@
         private Button button_menu_unregister;
         private Button button_sort;
         private CheckBox checkBox_autosort;
+        private TabPage tabPage3;
+        private TextBox textBox_list;
     }
 }
