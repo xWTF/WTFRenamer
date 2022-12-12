@@ -17,8 +17,19 @@ namespace WTFRenamer
         {
             InitializeComponent();
             comboBox1.SelectedIndex = 0;
+            replace_with.SelectedIndex = 0;
 
-            // TODO: Load state
+            // Load window state
+            var settings = Properties.Settings.Default;
+            if (settings.NeedUpgrade)
+            {
+                settings.Upgrade();
+                settings.Save();
+            }
+            Width = Math.Max(Width, settings.WindowWidth);
+            Height = Math.Max(Height, settings.WindowHeight);
+            columnHeader1.Width = Math.Max(columnHeader1.Width, settings.Column1Width);
+            columnHeader2.Width = Math.Max(columnHeader2.Width, settings.Column2Width);
 
             foreach (string f in argv)
             {
@@ -56,7 +67,7 @@ namespace WTFRenamer
             case 0:
                 try
                 {
-                    regex = new Regex(textBox1.Text == "" ? "^.*$" : textBox1.Text, RegexOptions.Compiled);
+                    regex = new Regex(match_regex.Text == "" ? "^.*$" : match_regex.Text, RegexOptions.Compiled);
                 }
                 catch
                 {
@@ -102,7 +113,7 @@ namespace WTFRenamer
                     {
                     case 0:
                         // Regex Replace
-                        name = regex!.Replace(name, textBox2.Text);
+                        name = regex!.Replace(name, replace_with.Text);
 
                         // Numbering
                         name = NumberingReplace.Replace(name, e => e.Value[..^1] + number.ToString().PadLeft((int)numericUpDown_length.Value, '0'));
@@ -425,6 +436,29 @@ namespace WTFRenamer
             {
                 MessageBox.Show(ex.ToString(), "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void FormMain_SizeChanged(object sender, EventArgs e)
+        {
+            var settings = Properties.Settings.Default;
+            settings.WindowWidth = Width;
+            settings.WindowHeight = Height;
+            settings.Save();
+        }
+
+        private void listView1_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            var settings = Properties.Settings.Default;
+            switch (e.ColumnIndex)
+            {
+            case 0:
+                settings.Column1Width = listView1.Columns[e.ColumnIndex].Width;
+                break;
+            case 1:
+                settings.Column2Width = listView1.Columns[e.ColumnIndex].Width;
+                break;
+            }
+            settings.Save();
         }
     }
 }
