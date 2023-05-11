@@ -117,6 +117,7 @@ namespace WTFRenamer
 
                         // Numbering
                         name = NumberingReplace.Replace(name, e => e.Value[..^1] + number.ToString().PadLeft((int)numericUpDown_length.Value, '0'));
+                        name = name.Replace("\\#", "#").Replace("\\\\", "\\");
                         number += numericUpDown_incr.Value;
 
                         // Letter Case
